@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title>GDGU Chat Bot</title>
+    <!--Main Style Sheet-->
+    <link rel="stylesheet" href="/static/style.css" />
+    <!--Icon Style Sheet-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!--Jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+      .cm-msg-text {
+        overflow-x: scroll;
+        color: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--chat-box-Initialise-Circle-end-->
+    <!--chat-box-Start-->
+
+    <!--chat-box-header-Start-->
+    <div class="chatbox-header">
+      <div class="headertitle">
+        <h3>Chat Bot</h3>
+        <p>Auto chat bot</p>
+      </div>
+    </div>
+    <!--chat-box-header-End-->
+    <!--chat-log-Start-->
+    <div class="chat-box-body" style="border: none">
+      <div class="chat-logs"></div>
+    </div>
+    <!--chat-log-End-->
+    <!--chat-Input-Start-->
+    <div class="chat-input">
+      <form
+        id="chat-submit"
+        style="
+          position: fixed !important;
+          bottom: 0 !important;
+          width: 100% !important;
+        "
+      >
+        {% csrf_token %}
+        <input
+          type="text"
+          id="chat-input"
+          name="message"
+          placeholder="Send a message..."
+          style="display: inline-block; width: 90%; border: none"
+          required
+        />
+        <button
+          type="submit"
+          style="
+            display: inline-block;
+            width: 9%;
+            border: none;
+            text-align: center;
+            background-color: #004b82;
+            height: 47px;
+            color: white;
+          "
+        >
+          Send
+        </button>
+      </form>
+    </div>
+    <!--chat-Input-End-->
+    <!--chat-box-Start-->
+    <!--Script-Start-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      $(function () {
+        var INDEX = 0; //Index For Messages
+        $("#chat-submit").submit(function (event) {
+          event.preventDefault();
+          var msg = $("#chat-input").val(); //Assigning Message Variable
+          if (msg.trim() == "") {
+            //False if Empty
+            return false;
+          }
+          generate_message(msg, "self");
+          var buttons = [
+            {
+              name: "Existing User",
+              value: "existing",
+            },
+            {
+              name: "New User",
+              value: "new",
+            },
+          ];
+          const params = new URLSearchParams();
+          params.append("user_input", msg);
+          params.append(
+            "csrfmiddlewaretoken",
+            event.target.csrfmiddlewaretoken.value
+          );
+
+          axios.post("/chat/", params).then((rsp) => {
+            generate_message(rsp.data, "user");
+          });
+        });
+
+        function generate_message(msg, type) {
+          INDEX++;
+          var str = "";
+          str +=
+            "<div id='cm-msg-" + INDEX + "' class=\"chat-msg " + type + '">'; //Toggeling Class
+          str += '          <div class="cm-msg-text">';
+          str += msg;
+          str += "          <\/div>";
+          str += "        <\/div>";
+          $(".chat-logs").append(str);
+          $("#cm-msg-" + INDEX)
+            .hide()
+            .fadeIn(300);
+          if (type == "self") {
+            $("#chat-input").val("");
+          }
+          $(".chat-logs")
+            .stop()
+            .animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
+        }
+
+        generate_message(
+          "Welcome to LINX, your admission assistant, how can I help you?",
+          "user"
+        );
+
+        // //Initiate Chat Bot
+        // $("#chat-circle").click(function () {
+        //     $("#chat-circle").toggle('scale');
+        //     $(".chat-box").toggle('scale');
+        // })
+        // //Kill Chat Bot
+        // $(".chat-box-toggle").click(function () {
+        //     $("#chat-circle").toggle('scale');
+        //     $(".chat-box").toggle('scale');
+        // })
+      });
+    </script>
+  </body>
+</html>

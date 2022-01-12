@@ -1,0 +1,186 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 0.875rem;
+  /* background-color: #f8f9fa !important; */ /* New */
+  background-color: #f8f9fa !important;
+  font-family: "Cerebri Sans", sans-serif;
+}
+
+svg {
+  width: 14px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+   * Sidebar
+   */
+
+/* Modal */
+.fade {
+  background-color: #f8f9fa;
+}
+.card,
+.modal-content {
+  border: none;
+  /* border-radius: 2rem;  */
+}
+
+/* Card */
+.card-title {
+  font-weight: 400;
+}
+
+/* btn & bg colors */
+.btn-white {
+  color: #6c757d !important;
+  background-color: #fff;
+  /* border-color: #6c757d !important; */
+}
+
+.bg-success,
+.btn-success {
+  background-color: #39b785 !important;
+}
+.bg-danger {
+  background-color: #ec6548 !important;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc4645;
+  border-color: #dc4645;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #0d8efd;
+  border-color: #0d8efd;
+}
+.btn-success {
+  color: #fff;
+  background-color: #28b845;
+  border-color: #28b845;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 400;
+}
+
+/* spinner */
+.iqyldC {
+  padding: 8px 0px 0px 8px;
+  display: inline-block !important;
+}
+
+/* Signin */
+
+.wilyer-container {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  align-items: center;
+}
+
+.wilyer-signin {
+  width: 100%;
+  max-width: 35rem;
+  padding: 15px;
+  margin: auto;
+}
+
+/* form */
+.form-control:focus {
+  box-shadow: inset 0 0px 0 #0d8efd;
+}
+
+.password-field {
+  border-radius: 0.25rem 0px 0px 0.25rem !important;
+}
+
+.close.pt--3 {
+  top: -3px !important;
+}
+
+.toggle {
+  height: 25px;
+  width: 45px !important;
+}
+
+input,
+select {
+  font-size: 14px !important;
+}
+
+label.myLabel input[type="file"] {
+  position: absolute;
+  top: -1000px;
+}
+
+label.form-control {
+  height: 140px !important;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  /* border-radius: 12px; */
+}
+label.form-control > span {
+  position: relative;
+  top: 40%;
+  left: 37%;
+}
+@media only screen and (max-width: 540px) {
+  label.form-control > span {
+    top: 40%;
+    left: 20%;
+  }
+}
+
+/* Custome Code */
+.wilyer_library_card_cover {
+  max-height: 250px;
+}
+
+.wilyer_file_uploading {
+  height: 150px;
+  width: 200px;
+  /* border-radius: 2rem 0px 0px 2rem; */
+}
+
+@media only screen and (max-width: 540px) {
+  .wilyer_file_uploading {
+    width: 100%;
+    height: auto;
+    /* border-radius: 2rem 2rem 0rem 0rem; */
+  }
+}
+
+.mt-n1 {
+  margin-top: -2rem !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .mt-n1 {
+    margin-top: 2rem !important;
+  }
+}
+
+.wilyer-shop-filter {
+  z-index: 1020 !important;
+  max-width: 800px;
+}
